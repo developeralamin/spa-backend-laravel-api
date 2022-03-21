@@ -23,8 +23,6 @@ Route::get('/category/{id}',[CategoryController::class,'edit']);
 Route::put('/category/{id}',[CategoryController::class,'update']);
 Route::delete('/category/{id}',[CategoryController::class,'destroy']);
 
-
-
 // lesson api section
 Route::get('/lessons',[LessonController::class,'index']);
 Route::post('/lessons',[LessonController::class,'create']);
