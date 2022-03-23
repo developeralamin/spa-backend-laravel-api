@@ -63,7 +63,10 @@ class LessonController extends Controller
      */
     public function show($id)
     {
-        //
+        $lesson = Lesson::with('category')->findOrFail($id);
+        return response()->json([
+            'data' => $lesson
+        ],200);
     }
 
     /**

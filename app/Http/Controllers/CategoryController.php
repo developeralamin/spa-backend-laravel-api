@@ -36,17 +36,28 @@ class CategoryController extends Controller
     {
          $this->validate($request, [
             'title' => 'required',
-        ]);
+         ]);
 
-        $category           = new Category();
-      $category->title      = $request->title;
-      $category->slug       = Str::slug($request->title);
+     $isUniqueCategory = Category::where('title',$request->title)->first(); 
 
-      $category->save();
+       if($isUniqueCategory){
+            return response()->json([
+                'error' => 'Category title already exits'
+            ],201);
+         }
 
-      return response()->json([
-          'message' => 'Category added successfully'
-       ],201);
+         else{
+             $category          = new Category();
+          $category->title      = $request->title;
+          $category->slug       = Str::slug($request->title);
+
+          $category->save();
+            return response()->json([
+              'message' => 'Category added successfully'
+           ],201);
+         }
+
+    
     }
 
     /**

@@ -10,9 +10,10 @@ use App\Http\Controllers\UserController;
 
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-       return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//        return $request->user();
+// });
+
 
 
 Route::middleware('auth:sanctum')->group(function(){
@@ -29,7 +30,7 @@ Route::post('/lessons',[LessonController::class,'create']);
 Route::get('/lessons/{id}',[LessonController::class,'edit']);
 Route::put('/lessons/{id}',[LessonController::class,'update']);
 Route::delete('/lessons/{id}',[LessonController::class,'destroy']);
-
+Route::get('/lessons/{id}',[LessonController::class,'show']);
 
 // bennar api section
 Route::get('/bennar',[BennarController::class,'index']);
@@ -47,21 +48,9 @@ Route::delete('/courses/{id}',[CourseController::class,'destroy']);
 
 });
 
+
+
 Route::get('/getAllcourses',[CourseController::class,'index']);
-
 Route::get('/courses/{id}',[CourseController::class,'show']);
-
 Route::post('/login_user',[UserController::class,'login']);
 Route::post('/sign_up',[UserController::class,'sign_up']);
-
-// Route::post('/login_user',[UserController::class,'logout']);
-
-
-
-// category api section
-// Route::get('/category',[CategoryController::class,'index']);
-
-// Route::get('/courses/{id}',[CourseController::class,'course_detials']);
-
-
-
