@@ -26,6 +26,10 @@ class UserController extends Controller
 
     	  	   return response()->json($response,200);
     	  }else{
+
+            return response()->json([
+                'error' =>'Invalid credential'
+            ],422);
             
           }
 
@@ -38,7 +42,22 @@ class UserController extends Controller
 
         public function sign_up(Request $request)
         {
-             $user = new User();
+
+        $this->validate($request, [
+            'email' => 'required|unique:users',
+         ]);
+
+        $isUniqueEmail = User::where('email',$request->email)->first();
+         
+        if($isUniqueEmail){
+
+         // return response()->json([
+         //    'error' =>'Email has already exists'
+         // ],422);
+
+        }
+        else{
+               $user = new User();
 
              $user->name = $request->name;
              $user->email = $request->email;
@@ -49,6 +68,10 @@ class UserController extends Controller
              return response()->json([
                'message' => 'Successfully registered',
            ], 200);
+
+        } 
+
+          
         }
 
 }

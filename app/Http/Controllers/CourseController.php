@@ -35,7 +35,14 @@ class CourseController extends Controller
      */
     public function create(Request $request)
     {
-        //$data =  $request->all();
+
+         $this->validate($request,[
+            'title'        =>'required',
+            'description'  => 'required',
+             'photo'       => 'required',
+            'category_id'  => 'required',
+         ]); 
+
 
         $slug = strtolower(str_replace(' ','-' ,$request->title));
 

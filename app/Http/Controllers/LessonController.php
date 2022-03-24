@@ -28,6 +28,14 @@ class LessonController extends Controller
      */
     public function create(Request $request)
     {
+
+        $this->validate($request,[
+            'title'        =>'required',
+            'description'  => 'required',
+             'video_url'    => 'required',
+            'category_id'  => 'required',
+         ]); 
+
         $lesson              = new Lesson();
 
         $lesson->title       = $request->title;

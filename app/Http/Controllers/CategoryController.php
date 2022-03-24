@@ -34,16 +34,17 @@ class CategoryController extends Controller
      */
     public function create(Request $request)
     {
-         $this->validate($request, [
-            'title' => 'required',
-         ]);
+        
+         $this->validate($request,[
+            'title' =>'required|unique:categories'
+         ]);      
 
      $isUniqueCategory = Category::where('title',$request->title)->first(); 
 
        if($isUniqueCategory){
-            return response()->json([
-                'error' => 'Category title already exits'
-            ],201);
+            // return response()->json([
+            //     'error' => 'Category title already exits'
+            // ],201);
          }
 
          else{
