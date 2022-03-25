@@ -174,6 +174,7 @@ class CourseController extends Controller
         $getCourseInfo = Course::find($id);
 
          $deleteCourse = Course::destroy($id);
+         
          if($deleteCourse){
             unlink(public_path('/img/course/'.$getCourseInfo->photo));
             return response()->json([

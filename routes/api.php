@@ -7,6 +7,7 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\BennarController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AboutController;
 
 
 
@@ -45,6 +46,16 @@ Route::post('/courses',[CourseController::class,'create']);
 Route::get('/courses/{id}',[CourseController::class,'edit']);
 Route::post('/courses/{id}',[CourseController::class,'update']);
 Route::delete('/courses/{id}',[CourseController::class,'destroy']);
+
+// about api section
+Route::get('/about',[AboutController::class,'index']);
+Route::post('/about',[AboutController::class,'create']);
+Route::get('/about/{id}',[AboutController::class,'edit']);
+Route::post('/about/{id}',[AboutController::class,'update']);
+Route::delete('/about/{id}',[AboutController::class,'destroy']);
+Route::get('/about/{id}',[AboutController::class,'show']);
+
+
 
 });
 
